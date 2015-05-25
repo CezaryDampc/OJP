@@ -8,6 +8,7 @@ namespace WindowsFormApplication1 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
 	/// Summary for Form1
@@ -313,6 +314,7 @@ namespace WindowsFormApplication1 {
 			this->Zapisz->TabIndex = 24;
 			this->Zapisz->Text = L"Zapisz";
 			this->Zapisz->UseVisualStyleBackColor = true;
+			this->Zapisz->Click += gcnew System::EventHandler(this, &Form1::Zapisz_Click);
 			// 
 			// Lista_klientow
 			// 
@@ -331,6 +333,7 @@ namespace WindowsFormApplication1 {
 			this->Zamknij->TabIndex = 26;
 			this->Zamknij->Text = L"Zamknij";
 			this->Zamknij->UseVisualStyleBackColor = true;
+			this->Zamknij->Click += gcnew System::EventHandler(this, &Form1::Zamknij_Click);
 			// 
 			// Form1
 			// 
@@ -371,6 +374,11 @@ namespace WindowsFormApplication1 {
 
 		}
 #pragma endregion
-	};
+	private: System::Void Zamknij_Click(System::Object^  sender, System::EventArgs^  e) {
+				 Close();
+	}
+private: System::Void Zapisz_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+};
 }
 
