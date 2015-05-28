@@ -55,8 +55,8 @@ namespace WindowsFormApplication1 {
 	private: System::Windows::Forms::TextBox^  text_Miasto;
 	private: System::Windows::Forms::TextBox^  text_Ulica;
 	private: System::Windows::Forms::TextBox^  text_NRDOMU;
-	private: System::Windows::Forms::CheckBox^  check_M;
-	private: System::Windows::Forms::CheckBox^  check_K;
+
+
 
 
 
@@ -65,6 +65,11 @@ namespace WindowsFormApplication1 {
 	private: System::Windows::Forms::Button^  Zamknij;
 
 	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::TextBox^  NR_Klienta;
+	private: System::Windows::Forms::Label^  label2;
+
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::TextBox^  textBox2;
 
 	private:
 		/// <summary>
@@ -95,22 +100,25 @@ namespace WindowsFormApplication1 {
 			this->text_Miasto = (gcnew System::Windows::Forms::TextBox());
 			this->text_Ulica = (gcnew System::Windows::Forms::TextBox());
 			this->text_NRDOMU = (gcnew System::Windows::Forms::TextBox());
-			this->check_M = (gcnew System::Windows::Forms::CheckBox());
-			this->check_K = (gcnew System::Windows::Forms::CheckBox());
 			this->Zapisz = (gcnew System::Windows::Forms::Button());
 			this->Lista_klientow = (gcnew System::Windows::Forms::Button());
 			this->Zamknij = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->NR_Klienta = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(32, 31);
+			this->label1->Location = System::Drawing::Point(21, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(91, 13);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"DANE KLIENTA :";
+			this->label1->Click += gcnew System::EventHandler(this, &Form1::label1_Click);
 			// 
 			// Label_Imie
 			// 
@@ -235,26 +243,6 @@ namespace WindowsFormApplication1 {
 			this->text_NRDOMU->Size = System::Drawing::Size(100, 20);
 			this->text_NRDOMU->TabIndex = 18;
 			// 
-			// check_M
-			// 
-			this->check_M->AutoSize = true;
-			this->check_M->Location = System::Drawing::Point(86, 332);
-			this->check_M->Name = L"check_M";
-			this->check_M->Size = System::Drawing::Size(35, 17);
-			this->check_M->TabIndex = 19;
-			this->check_M->Text = L"M";
-			this->check_M->UseVisualStyleBackColor = true;
-			// 
-			// check_K
-			// 
-			this->check_K->AutoSize = true;
-			this->check_K->Location = System::Drawing::Point(172, 332);
-			this->check_K->Name = L"check_K";
-			this->check_K->Size = System::Drawing::Size(33, 17);
-			this->check_K->TabIndex = 20;
-			this->check_K->Text = L"K";
-			this->check_K->UseVisualStyleBackColor = true;
-			// 
 			// Zapisz
 			// 
 			this->Zapisz->Location = System::Drawing::Point(447, 87);
@@ -273,6 +261,7 @@ namespace WindowsFormApplication1 {
 			this->Lista_klientow->TabIndex = 25;
 			this->Lista_klientow->Text = L"Lista klientów";
 			this->Lista_klientow->UseVisualStyleBackColor = true;
+			this->Lista_klientow->Click += gcnew System::EventHandler(this, &Form1::Lista_klientow_Click);
 			// 
 			// Zamknij
 			// 
@@ -291,17 +280,52 @@ namespace WindowsFormApplication1 {
 			this->textBox1->Size = System::Drawing::Size(100, 20);
 			this->textBox1->TabIndex = 28;
 			// 
+			// NR_Klienta
+			// 
+			this->NR_Klienta->Location = System::Drawing::Point(142, 28);
+			this->NR_Klienta->Name = L"NR_Klienta";
+			this->NR_Klienta->Size = System::Drawing::Size(100, 20);
+			this->NR_Klienta->TabIndex = 29;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(30, 35);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(73, 13);
+			this->label2->TabIndex = 30;
+			this->label2->Text = L"Numer Klienta";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(242, 336);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(43, 13);
+			this->label3->TabIndex = 32;
+			this->label3->Text = L"M lub K";
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(113, 333);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(100, 20);
+			this->textBox2->TabIndex = 33;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::HotTrack;
 			this->ClientSize = System::Drawing::Size(600, 463);
+			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->NR_Klienta);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->Zamknij);
 			this->Controls->Add(this->Lista_klientow);
 			this->Controls->Add(this->Zapisz);
-			this->Controls->Add(this->check_K);
-			this->Controls->Add(this->check_M);
 			this->Controls->Add(this->text_NRDOMU);
 			this->Controls->Add(this->text_Ulica);
 			this->Controls->Add(this->text_Miasto);
@@ -318,6 +342,7 @@ namespace WindowsFormApplication1 {
 			this->Controls->Add(this->Label_Nazwisko);
 			this->Controls->Add(this->Label_Imie);
 			this->Controls->Add(this->label1);
+			this->ForeColor = System::Drawing::SystemColors::ControlText;
 			this->Name = L"Form1";
 			this->Text = L"Form1";
 			this->ResumeLayout(false);
@@ -331,19 +356,25 @@ namespace WindowsFormApplication1 {
 private: System::Void Zapisz_Click(System::Object^  sender, System::EventArgs^  e) {
 			 String ^ constring = L"datasource=localhost;port=3306;username=root;password=root";
 			 MySqlConnection ^ conDatabase = gcnew MySqlConnection(constring);
-			 MySqlCommand ^ cmdDatabase = gcnew MySqlCommand("select * from database.edata;", conDatabase);
+			 MySqlCommand ^ cmdDatabase = gcnew MySqlCommand("insert into database.Tabelaa(Numer,Imiê,Nazwisko,Numer_Telefonu,Miasto,Ulica,Numer_Domu_Mieszkania,Data_Urodzenia,P³eæ) values('" + this->NR_Klienta->Text + "','" + this->text_Imie->Text + "','" + this->text_nazwisko->Text + "','" + this->text_NRTEL->Text + "','" + this->text_Miasto->Text + "','" + this->text_Ulica->Text + "','" + this->text_NRDOMU->Text + "', '" + this->textBox1->Text + "','"+this->textBox2->Text+"');", conDatabase);
+			
 			 MySqlDataReader ^ myReader;
 			 try{
 				 conDatabase->Open();
 				 myReader = cmdDatabase->ExecuteReader();
+				 MessageBox::Show("Zapisano!");
 			 }
 			 catch (Exception ^ex){
 				 MessageBox::Show(ex->Message);
 			 }
 }
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-
-			
+private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void Lista_klientow_Click(System::Object^  sender, System::EventArgs^  e) {
+			 Form ^ okno = gcnew Form;
+			 okno->Show();
+			 okno->Width = 1000;
+			 okno->Height = 700;
 }
 };
 }
