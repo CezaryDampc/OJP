@@ -46,9 +46,9 @@ namespace WindowsFormApplication1 {
 	private: System::Windows::Forms::Label^  Label_NUMERDOM;
 	private: System::Windows::Forms::Label^  Label_Plec;
 	private: System::Windows::Forms::Label^  Label_DataURO;
-	private: System::Windows::Forms::Label^  Label_Rok;
-	private: System::Windows::Forms::Label^  Label_Miesiac;
-	private: System::Windows::Forms::Label^  Label_Dzien;
+
+
+
 	private: System::Windows::Forms::TextBox^  text_Imie;
 	private: System::Windows::Forms::TextBox^  text_nazwisko;
 	private: System::Windows::Forms::TextBox^  text_NRTEL;
@@ -57,12 +57,14 @@ namespace WindowsFormApplication1 {
 	private: System::Windows::Forms::TextBox^  text_NRDOMU;
 	private: System::Windows::Forms::CheckBox^  check_M;
 	private: System::Windows::Forms::CheckBox^  check_K;
-	private: System::Windows::Forms::TextBox^  text_ROK;
-	private: System::Windows::Forms::TextBox^  text_Miesiac;
-	private: System::Windows::Forms::TextBox^  text_Dzien;
+
+
+
 	private: System::Windows::Forms::Button^  Zapisz;
 	private: System::Windows::Forms::Button^  Lista_klientow;
 	private: System::Windows::Forms::Button^  Zamknij;
+
+	private: System::Windows::Forms::TextBox^  textBox1;
 
 	private:
 		/// <summary>
@@ -87,9 +89,6 @@ namespace WindowsFormApplication1 {
 			this->Label_NUMERDOM = (gcnew System::Windows::Forms::Label());
 			this->Label_Plec = (gcnew System::Windows::Forms::Label());
 			this->Label_DataURO = (gcnew System::Windows::Forms::Label());
-			this->Label_Rok = (gcnew System::Windows::Forms::Label());
-			this->Label_Miesiac = (gcnew System::Windows::Forms::Label());
-			this->Label_Dzien = (gcnew System::Windows::Forms::Label());
 			this->text_Imie = (gcnew System::Windows::Forms::TextBox());
 			this->text_nazwisko = (gcnew System::Windows::Forms::TextBox());
 			this->text_NRTEL = (gcnew System::Windows::Forms::TextBox());
@@ -98,12 +97,10 @@ namespace WindowsFormApplication1 {
 			this->text_NRDOMU = (gcnew System::Windows::Forms::TextBox());
 			this->check_M = (gcnew System::Windows::Forms::CheckBox());
 			this->check_K = (gcnew System::Windows::Forms::CheckBox());
-			this->text_ROK = (gcnew System::Windows::Forms::TextBox());
-			this->text_Miesiac = (gcnew System::Windows::Forms::TextBox());
-			this->text_Dzien = (gcnew System::Windows::Forms::TextBox());
 			this->Zapisz = (gcnew System::Windows::Forms::Button());
 			this->Lista_klientow = (gcnew System::Windows::Forms::Button());
 			this->Zamknij = (gcnew System::Windows::Forms::Button());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -196,33 +193,6 @@ namespace WindowsFormApplication1 {
 			this->Label_DataURO->TabIndex = 9;
 			this->Label_DataURO->Text = L"Data urodzenia:";
 			// 
-			// Label_Rok
-			// 
-			this->Label_Rok->AutoSize = true;
-			this->Label_Rok->Location = System::Drawing::Point(86, 418);
-			this->Label_Rok->Name = L"Label_Rok";
-			this->Label_Rok->Size = System::Drawing::Size(30, 13);
-			this->Label_Rok->TabIndex = 10;
-			this->Label_Rok->Text = L"Rok:";
-			// 
-			// Label_Miesiac
-			// 
-			this->Label_Miesiac->AutoSize = true;
-			this->Label_Miesiac->Location = System::Drawing::Point(86, 449);
-			this->Label_Miesiac->Name = L"Label_Miesiac";
-			this->Label_Miesiac->Size = System::Drawing::Size(46, 13);
-			this->Label_Miesiac->TabIndex = 11;
-			this->Label_Miesiac->Text = L"Miesi¹c:";
-			// 
-			// Label_Dzien
-			// 
-			this->Label_Dzien->AutoSize = true;
-			this->Label_Dzien->Location = System::Drawing::Point(86, 485);
-			this->Label_Dzien->Name = L"Label_Dzien";
-			this->Label_Dzien->Size = System::Drawing::Size(37, 13);
-			this->Label_Dzien->TabIndex = 12;
-			this->Label_Dzien->Text = L"Dzieñ:";
-			// 
 			// text_Imie
 			// 
 			this->text_Imie->Location = System::Drawing::Point(142, 67);
@@ -285,30 +255,9 @@ namespace WindowsFormApplication1 {
 			this->check_K->Text = L"K";
 			this->check_K->UseVisualStyleBackColor = true;
 			// 
-			// text_ROK
-			// 
-			this->text_ROK->Location = System::Drawing::Point(151, 411);
-			this->text_ROK->Name = L"text_ROK";
-			this->text_ROK->Size = System::Drawing::Size(100, 20);
-			this->text_ROK->TabIndex = 21;
-			// 
-			// text_Miesiac
-			// 
-			this->text_Miesiac->Location = System::Drawing::Point(151, 442);
-			this->text_Miesiac->Name = L"text_Miesiac";
-			this->text_Miesiac->Size = System::Drawing::Size(100, 20);
-			this->text_Miesiac->TabIndex = 22;
-			// 
-			// text_Dzien
-			// 
-			this->text_Dzien->Location = System::Drawing::Point(151, 478);
-			this->text_Dzien->Name = L"text_Dzien";
-			this->text_Dzien->Size = System::Drawing::Size(100, 20);
-			this->text_Dzien->TabIndex = 23;
-			// 
 			// Zapisz
 			// 
-			this->Zapisz->Location = System::Drawing::Point(514, 191);
+			this->Zapisz->Location = System::Drawing::Point(447, 87);
 			this->Zapisz->Name = L"Zapisz";
 			this->Zapisz->Size = System::Drawing::Size(106, 23);
 			this->Zapisz->TabIndex = 24;
@@ -318,7 +267,7 @@ namespace WindowsFormApplication1 {
 			// 
 			// Lista_klientow
 			// 
-			this->Lista_klientow->Location = System::Drawing::Point(514, 252);
+			this->Lista_klientow->Location = System::Drawing::Point(447, 161);
 			this->Lista_klientow->Name = L"Lista_klientow";
 			this->Lista_klientow->Size = System::Drawing::Size(106, 23);
 			this->Lista_klientow->TabIndex = 25;
@@ -327,7 +276,7 @@ namespace WindowsFormApplication1 {
 			// 
 			// Zamknij
 			// 
-			this->Zamknij->Location = System::Drawing::Point(514, 311);
+			this->Zamknij->Location = System::Drawing::Point(447, 247);
 			this->Zamknij->Name = L"Zamknij";
 			this->Zamknij->Size = System::Drawing::Size(106, 23);
 			this->Zamknij->TabIndex = 26;
@@ -335,17 +284,22 @@ namespace WindowsFormApplication1 {
 			this->Zamknij->UseVisualStyleBackColor = true;
 			this->Zamknij->Click += gcnew System::EventHandler(this, &Form1::Zamknij_Click);
 			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(142, 374);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(100, 20);
+			this->textBox1->TabIndex = 28;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(765, 577);
+			this->ClientSize = System::Drawing::Size(600, 463);
+			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->Zamknij);
 			this->Controls->Add(this->Lista_klientow);
 			this->Controls->Add(this->Zapisz);
-			this->Controls->Add(this->text_Dzien);
-			this->Controls->Add(this->text_Miesiac);
-			this->Controls->Add(this->text_ROK);
 			this->Controls->Add(this->check_K);
 			this->Controls->Add(this->check_M);
 			this->Controls->Add(this->text_NRDOMU);
@@ -354,9 +308,6 @@ namespace WindowsFormApplication1 {
 			this->Controls->Add(this->text_NRTEL);
 			this->Controls->Add(this->text_nazwisko);
 			this->Controls->Add(this->text_Imie);
-			this->Controls->Add(this->Label_Dzien);
-			this->Controls->Add(this->Label_Miesiac);
-			this->Controls->Add(this->Label_Rok);
 			this->Controls->Add(this->Label_DataURO);
 			this->Controls->Add(this->Label_Plec);
 			this->Controls->Add(this->Label_NUMERDOM);
@@ -378,6 +329,21 @@ namespace WindowsFormApplication1 {
 				 Close();
 	}
 private: System::Void Zapisz_Click(System::Object^  sender, System::EventArgs^  e) {
+			 String ^ constring = L"datasource=localhost;port=3306;username=root;password=root";
+			 MySqlConnection ^ conDatabase = gcnew MySqlConnection(constring);
+			 MySqlCommand ^ cmdDatabase = gcnew MySqlCommand("select * from database.edata;", conDatabase);
+			 MySqlDataReader ^ myReader;
+			 try{
+				 conDatabase->Open();
+				 myReader = cmdDatabase->ExecuteReader();
+			 }
+			 catch (Exception ^ex){
+				 MessageBox::Show(ex->Message);
+			 }
+}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+
+			
 }
 };
 }
