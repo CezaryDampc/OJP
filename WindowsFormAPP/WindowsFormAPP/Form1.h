@@ -1,5 +1,6 @@
 #pragma once
-
+#include "stdafx.h"
+#include "Form2.h"
 namespace WindowsFormApplication1 {
 
 	using namespace System;
@@ -371,14 +372,16 @@ private: System::Void Zapisz_Click(System::Object^  sender, System::EventArgs^  
 private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void Lista_klientow_Click(System::Object^  sender, System::EventArgs^  e) {
-			 Form ^ okno = gcnew Form;
-			 okno->Show();
-			 okno->Width = 1000;
-			 okno->Height = 700;
+			 WindowsFormAPP::Form2 ^okno1 = gcnew WindowsFormAPP::Form2();
+			 okno1->Show();
+			 okno1->Show();
+			 okno1->Width = 950;
+			 okno1->Height = 700;
 			 DataGridView ^ tabela = gcnew DataGridView;
-			 tabela->Width = 900;
-			 tabela->Height = 700;
-			 okno->Controls->Add(tabela);
+
+			 tabela->Width = 950;
+			 tabela->Height = 600;
+			 okno1->Controls->Add(tabela);
 			 String ^ constring = L"datasource=localhost;port=3306;username=root;password=root";
 			 MySqlConnection ^ conDatabase = gcnew MySqlConnection(constring);
 			 MySqlCommand ^ cmdDatabase = gcnew MySqlCommand("select Numer,Imiê,Nazwisko,Numer_Telefonu,Miasto,Ulica,Numer_Domu_Mieszkania,P³eæ,Data_Urodzenia from database.tabelaa;", conDatabase);
