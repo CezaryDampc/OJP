@@ -359,7 +359,8 @@ namespace WindowsFormApplication1 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)));
 			this->ClientSize = System::Drawing::Size(594, 442);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->button2);
@@ -390,7 +391,7 @@ namespace WindowsFormApplication1 {
 			this->Controls->Add(this->label1);
 			this->ForeColor = System::Drawing::SystemColors::ControlText;
 			this->Name = L"Form1";
-			this->Text = L"Form1";
+			this->Text = L"ClientChecker";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -515,7 +516,7 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, Sy
 					 text_Miasto->Text = MiastoValue;
 					 String ^ UlicaValue = myReader->GetString("Ulica");
 					 text_Ulica->Text = UlicaValue;
-					 String ^ NRDOMUValue = myReader->GetInt32("Numer_Domu_Mieszkania").ToString();
+					 String ^ NRDOMUValue = myReader->GetString("Numer_Domu_Mieszkania");
 					 text_NRDOMU->Text = NRDOMUValue;
 					 String ^ P³eæValue = myReader->GetString("P³eæ");
 					 textBox2->Text = P³eæValue;

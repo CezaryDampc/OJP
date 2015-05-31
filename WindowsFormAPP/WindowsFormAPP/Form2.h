@@ -55,7 +55,7 @@ namespace WindowsFormAPP {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(420, 526);
+			this->button1->Location = System::Drawing::Point(450, 611);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 0;
@@ -67,11 +67,13 @@ namespace WindowsFormAPP {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)));
 			this->ClientSize = System::Drawing::Size(1084, 661);
 			this->Controls->Add(this->button1);
 			this->MinimizeBox = false;
 			this->Name = L"Form2";
-			this->Text = L"Form2";
+			this->Text = L"ClientChecker";
 			this->Load += gcnew System::EventHandler(this, &Form2::Form2_Load);
 			this->ResumeLayout(false);
 
