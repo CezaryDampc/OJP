@@ -71,6 +71,7 @@ namespace WindowsFormApplication1 {
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::TextBox^  textBox2;
 
+
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -317,7 +318,7 @@ namespace WindowsFormApplication1 {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::HotTrack;
-			this->ClientSize = System::Drawing::Size(600, 463);
+			this->ClientSize = System::Drawing::Size(742, 506);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -357,7 +358,6 @@ private: System::Void Zapisz_Click(System::Object^  sender, System::EventArgs^  
 			 String ^ constring = L"datasource=localhost;port=3306;username=root;password=root";
 			 MySqlConnection ^ conDatabase = gcnew MySqlConnection(constring);
 			 MySqlCommand ^ cmdDatabase = gcnew MySqlCommand("insert into database.Tabelaa(Numer,Imiê,Nazwisko,Numer_Telefonu,Miasto,Ulica,Numer_Domu_Mieszkania,Data_Urodzenia,P³eæ) values('" + this->NR_Klienta->Text + "','" + this->text_Imie->Text + "','" + this->text_nazwisko->Text + "','" + this->text_NRTEL->Text + "','" + this->text_Miasto->Text + "','" + this->text_Ulica->Text + "','" + this->text_NRDOMU->Text + "', '" + this->textBox1->Text + "','"+this->textBox2->Text+"');", conDatabase);
-			
 			 MySqlDataReader ^ myReader;
 			 try{
 				 conDatabase->Open();
@@ -375,6 +375,30 @@ private: System::Void Lista_klientow_Click(System::Object^  sender, System::Even
 			 okno->Show();
 			 okno->Width = 1000;
 			 okno->Height = 700;
+			 DataGridView ^ tabela = gcnew DataGridView;
+			 tabela->Width = 900;
+			 tabela->Height = 700;
+			 okno->Controls->Add(tabela);
+			 String ^ constring = L"datasource=localhost;port=3306;username=root;password=root";
+			 MySqlConnection ^ conDatabase = gcnew MySqlConnection(constring);
+			 MySqlCommand ^ cmdDatabase = gcnew MySqlCommand("select Numer,Imiê,Nazwisko,Numer_Telefonu,Miasto,Ulica,Numer_Domu_Mieszkania,P³eæ,Data_Urodzenia from database.tabelaa;", conDatabase);
+			 MySqlDataReader ^ myReader;
+			 try{
+				 MySqlDataAdapter ^ sda = gcnew MySqlDataAdapter();
+				 sda->SelectCommand = cmdDatabase;
+				 DataTable ^ dbdataset = gcnew DataTable();
+				 sda->Fill(dbdataset);
+				 BindingSource ^ bSource = gcnew BindingSource();
+
+				 bSource->DataSource = dbdataset;
+				 tabela->DataSource = bSource;
+				 sda->Update(dbdataset);
+			 }
+			 catch(Exception ^ex){
+				 MessageBox::Show(ex->Message);
+			 }
+}
+private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 }
 };
 }
