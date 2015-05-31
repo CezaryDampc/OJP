@@ -67,8 +67,9 @@ namespace WindowsFormAPP {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(934, 561);
+			this->ClientSize = System::Drawing::Size(1084, 661);
 			this->Controls->Add(this->button1);
+			this->MinimizeBox = false;
 			this->Name = L"Form2";
 			this->Text = L"Form2";
 			this->Load += gcnew System::EventHandler(this, &Form2::Form2_Load);

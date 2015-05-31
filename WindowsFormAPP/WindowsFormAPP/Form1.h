@@ -20,6 +20,7 @@ namespace WindowsFormApplication1 {
 		Form1(void)
 		{
 			InitializeComponent();
+			ComboBox();
 			//
 			//TODO: Add the constructor code here
 			//
@@ -71,8 +72,12 @@ namespace WindowsFormApplication1 {
 
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::TextBox^  textBox2;
+
+
+
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::ComboBox^  comboBox1;
 
 
 	private:
@@ -114,6 +119,7 @@ namespace WindowsFormApplication1 {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -340,12 +346,22 @@ namespace WindowsFormApplication1 {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
 			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Location = System::Drawing::Point(281, 67);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(131, 21);
+			this->comboBox1->TabIndex = 36;
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::comboBox1_SelectedIndexChanged);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ControlLight;
 			this->ClientSize = System::Drawing::Size(594, 442);
+			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox2);
@@ -407,7 +423,7 @@ private: System::Void Lista_klientow_Click(System::Object^  sender, System::Even
 			 okno1->Height = 700;
 			 DataGridView ^ tabela = gcnew DataGridView;
 			 
-			 tabela->Width = 950;
+			 tabela->Width = 1050;
 			 tabela->Height = 600;
 			 okno1->Controls->Add(tabela);
 			 String ^ constring = L"datasource=localhost;port=3306;username=root;password=root";
@@ -454,6 +470,59 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 				 conDatabase->Open();
 				 myReader = cmdDatabase->ExecuteReader();
 				 MessageBox::Show("Zaktualizowano!");
+			 }
+			 catch (Exception ^ex){
+				 MessageBox::Show(ex->Message);
+			 }
+}
+private: void ComboBox(void){
+			 String ^ constring = L"datasource=localhost;port=3306;username=root;password=root";
+			 MySqlConnection ^ conDatabase = gcnew MySqlConnection(constring);
+			 MySqlCommand ^ cmdDatabase = gcnew MySqlCommand("select * from database.Tabelaa", conDatabase);
+			 MySqlDataReader ^ myReader;
+			 try{
+				 conDatabase->Open();
+				 myReader = cmdDatabase->ExecuteReader();
+				 while(myReader->Read()){
+					 String ^imie;
+					 imie = myReader->GetString("Imiê");
+					 comboBox1->Items->Add(imie);
+				 }
+			 }
+			 catch (Exception ^ex){
+				 MessageBox::Show(ex->Message);
+			 }
+}
+private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+			 String ^ combo = comboBox1->Text;
+			 String ^ constring = L"datasource=localhost;port=3306;username=root;password=root";
+			 MySqlConnection ^ conDatabase = gcnew MySqlConnection(constring);
+			 MySqlCommand ^ cmdDatabase = gcnew MySqlCommand("select * from database.Tabelaa where Imiê = '"+combo+"'", conDatabase);
+			 MySqlDataReader ^ myReader;
+			 try{
+				 conDatabase->Open();
+				 myReader = cmdDatabase->ExecuteReader();
+				 while (myReader->Read()){
+					 String ^ NumerValue= myReader->GetInt32("Numer").ToString();
+					 NR_Klienta->Text = NumerValue;
+					 String ^ ImieValue = myReader->GetString("Imiê");
+					 text_Imie->Text = ImieValue;
+					 String ^ NazwiskoValue = myReader->GetString("Nazwisko");
+					 text_nazwisko->Text = NazwiskoValue;
+					 String ^ NRTELValue = myReader->GetInt32("Numer_Telefonu").ToString();
+					 text_NRTEL->Text = NRTELValue;
+					 String ^ MiastoValue = myReader->GetString("Miasto");
+					 text_Miasto->Text = MiastoValue;
+					 String ^ UlicaValue = myReader->GetString("Ulica");
+					 text_Ulica->Text = UlicaValue;
+					 String ^ NRDOMUValue = myReader->GetInt32("Numer_Domu_Mieszkania").ToString();
+					 text_NRDOMU->Text = NRDOMUValue;
+					 String ^ P³eæValue = myReader->GetString("P³eæ");
+					 textBox2->Text = P³eæValue;
+					 String ^ Data_URValue = myReader->GetString("Data_Urodzenia");
+					 textBox1->Text = Data_URValue;
+
+				 }
 			 }
 			 catch (Exception ^ex){
 				 MessageBox::Show(ex->Message);
