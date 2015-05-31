@@ -71,6 +71,8 @@ namespace WindowsFormApplication1 {
 
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::TextBox^  textBox2;
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  button2;
 
 
 	private:
@@ -110,14 +112,18 @@ namespace WindowsFormApplication1 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"MS Reference Sans Serif", 10.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Pixel,
+				static_cast<System::Byte>(238)));
 			this->label1->Location = System::Drawing::Point(21, 9);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(91, 13);
+			this->label1->Size = System::Drawing::Size(101, 15);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"DANE KLIENTA :";
 			this->label1->Click += gcnew System::EventHandler(this, &Form1::label1_Click);
@@ -247,7 +253,7 @@ namespace WindowsFormApplication1 {
 			// 
 			// Zapisz
 			// 
-			this->Zapisz->Location = System::Drawing::Point(447, 87);
+			this->Zapisz->Location = System::Drawing::Point(447, 97);
 			this->Zapisz->Name = L"Zapisz";
 			this->Zapisz->Size = System::Drawing::Size(106, 23);
 			this->Zapisz->TabIndex = 24;
@@ -257,7 +263,7 @@ namespace WindowsFormApplication1 {
 			// 
 			// Lista_klientow
 			// 
-			this->Lista_klientow->Location = System::Drawing::Point(447, 161);
+			this->Lista_klientow->Location = System::Drawing::Point(447, 216);
 			this->Lista_klientow->Name = L"Lista_klientow";
 			this->Lista_klientow->Size = System::Drawing::Size(106, 23);
 			this->Lista_klientow->TabIndex = 25;
@@ -267,7 +273,7 @@ namespace WindowsFormApplication1 {
 			// 
 			// Zamknij
 			// 
-			this->Zamknij->Location = System::Drawing::Point(447, 247);
+			this->Zamknij->Location = System::Drawing::Point(447, 257);
 			this->Zamknij->Name = L"Zamknij";
 			this->Zamknij->Size = System::Drawing::Size(106, 23);
 			this->Zamknij->TabIndex = 26;
@@ -314,12 +320,34 @@ namespace WindowsFormApplication1 {
 			this->textBox2->Size = System::Drawing::Size(100, 20);
 			this->textBox2->TabIndex = 33;
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(447, 172);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(106, 23);
+			this->button1->TabIndex = 34;
+			this->button1->Text = L"Usuñ z listy";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(447, 136);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(106, 23);
+			this->button2->TabIndex = 35;
+			this->button2->Text = L"Aktualizuj";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::HotTrack;
-			this->ClientSize = System::Drawing::Size(742, 506);
+			this->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->ClientSize = System::Drawing::Size(594, 442);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -378,7 +406,7 @@ private: System::Void Lista_klientow_Click(System::Object^  sender, System::Even
 			 okno1->Width = 950;
 			 okno1->Height = 700;
 			 DataGridView ^ tabela = gcnew DataGridView;
-
+			 
 			 tabela->Width = 950;
 			 tabela->Height = 600;
 			 okno1->Controls->Add(tabela);
@@ -402,6 +430,34 @@ private: System::Void Lista_klientow_Click(System::Object^  sender, System::Even
 			 }
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+			 String ^ constring = L"datasource=localhost;port=3306;username=root;password=root";
+			 MySqlConnection ^ conDatabase = gcnew MySqlConnection(constring);
+			 MySqlCommand ^ cmdDatabase = gcnew MySqlCommand("Delete from database.Tabelaa where Numer='" + this->NR_Klienta->Text + "';", conDatabase);
+			 MySqlDataReader ^ myReader;
+			 try{
+				 conDatabase->Open();
+				 myReader = cmdDatabase->ExecuteReader();
+				 MessageBox::Show("Usuniêto!");
+			 }
+			 catch (Exception ^ex){
+				 MessageBox::Show(ex->Message);
+			 }
+}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+			 String ^ constring = L"datasource=localhost;port=3306;username=root;password=root";
+			 MySqlConnection ^ conDatabase = gcnew MySqlConnection(constring);
+			 MySqlCommand ^ cmdDatabase = gcnew MySqlCommand("Update database.Tabelaa set Numer='" + this->NR_Klienta->Text + "',Imiê='" + this->text_Imie->Text + "',Nazwisko='" + this->text_nazwisko->Text + "',Numer_Telefonu='" + this->text_NRTEL->Text + "',Miasto='" + this->text_Miasto->Text + "',Ulica='" + this->text_Ulica->Text + "',Numer_Domu_Mieszkania='" + this->text_NRDOMU->Text + "',Data_Urodzenia= '" + this->textBox1->Text + "',P³eæ='" + this->textBox2->Text + "' where Numer='" + this->NR_Klienta->Text + "';", conDatabase);
+			 MySqlDataReader ^ myReader;
+			 try{
+				 conDatabase->Open();
+				 myReader = cmdDatabase->ExecuteReader();
+				 MessageBox::Show("Zaktualizowano!");
+			 }
+			 catch (Exception ^ex){
+				 MessageBox::Show(ex->Message);
+			 }
 }
 };
 }
